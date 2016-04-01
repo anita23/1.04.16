@@ -1,0 +1,51 @@
+### normalmente se utiliza el modelo aditivo ... este modelo es prepiado cuando la magnitud de la fluctuaciones estacionales de la serie no varia al hacerlo tendencia
+### se utiliza multiplicativo
+
+### cuando la magnitud de las fluctuaciones de la serie crece y decrece proporcionalmente con los crecimientos y decrecimientos de la tendencia, respect.
+###una vez que logramos descomponer la st en diversos los elementos de estacionalidad 
+## y tendencia hay que desestacionalizar la st y eleminar la tendencia
+
+## existe tendencia cuando existe un patron en los datos a largo plazo ya sea que aumente o disminuye los datos
+### la estacionalidad existe cuando la st cuando es inluenciado por factores estacionales (por ejemplo, el trimestre del año, el mes, o el día de la semana)
+### existen componentes de ciclico en los datos cuando se detectan incrementos y caidas que no son de tiempo determinado, (duración por lo general de almenos 2 años)
+#### 3 de estos 3 elementos normalmente existen confusiones para detectarlos entre la estacionalidad y el componente ciclico 
+#### principales diferencias entree estos dos componentes
+###1 en el patron estacional la longitud es es constante:; en el patron ciclico la longitud es variable
+### 2 la duracion media del componente ciclico es más largo que la longitud en el patros estacional.
+###3 la magnitud ciclica es más variable que en el patron estacional
+###4 el momento de picos y caidases predecible con los datos estacionales, pero impredecible a largo plazo con datos cíclicos  
+install.packages("fpp")
+require(fpp)
+plot(window(elect, start=1980), ylab="GHw", xlab="year", main="australia")
+### estacionalidad, no ciclico y tandencia
+plot(bricksq, ylab="millon units", xlab= "year", main= "australian clay brick production")
+### estacional y ciclico no mucha tendencia
+plot(hsales, main="sales of new one-family houses, USA", ylab=" tatal sales", xlab="year")
+### no esta ni tendencia ni posible ciclico
+####### Ejemplo
+bimbo<- read.csv ("C:\\Users\\SALA-C25\\Desktop\\bimbo bien.csv", header=T)
+bimbots<-ts (bimbo[,5], start=2000, frequency=12)
+plot( bimbots)
+### bimbo se considera que presenta un comportamiento ciclico ya que tiene una disminuciónen el 2011 y un ligero aumentoen el 2008. presenta tendencia del año 200 al 2006 y un poco de tendencia del año 20012 al 2016 no presenta estacionalidad
+
+televisa<- read.csv ("C:\\Users\\SALA-C25\\Desktop\\tele bien.csv", header=T)
+telets<-ts (televisa[,5], start=2000, frequency=12)
+plot( telets)
+### televisa presenta tendencia del año 2000 al 2008, presenta comportamiento ciclico del año en el 2001 al 2002y del año 2007 al 2008y no presenta estacionalidad 
+ica<- read.csv ("C:\\Users\\SALA-C25\\Desktop\\ica bien.csv", header=T)
+icats<-ts (ica[,5], start=2000, frequency=12)
+plot( icats)
+### ica presenta un comportamiento ciclico del año 2007 al 2008 y del año 20012 al 20013, presenta tendencia del año 2000 al 2005 y no presenta estacionalidad.
+### yo recomendaria invertir más en bimbo ya que a pesar de sus crisis tiene mayor tendencia en aumento.
+
+jpeg("bimbo.jpg")
+plot(bimbots)
+dev.off()
+
+jpeg("televisa.jpg")
+plot(telets)
+dev.off()
+
+jpeg("ica.jpg")
+plot(icats)
+dev.off()
